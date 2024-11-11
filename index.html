@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Website Formulir Pendaftaran</title>
+    <link rel="icon" href="Shikimori X Izumi.jpeg" type="icon/jpeg">
+</head>
+<body class="body1">
+    <h1 id="Test">Forum Pendaftaran PT. AMBATUNAT</h1>  <a href="Tentang.html" id="Tentang">Tentang Kami</a>
+    <form id="Forum">
+    <br>
+    <font face="times new roman" size="4"><center><table border="0">
+    <h2><center>Formulir Yang Harus Di Isi</center></h2>
+
+    <center><tr>
+        <td>Nama</td>
+        <td>:</td>
+        <td id="Nama"><input type="text" name="Nama" size="30"></td>
+    </tr></center>
+
+    <center><tr>
+        <td>Tempat Lahir</td>
+        <td>:</td>
+        <td id="TempatLahir"><input type="text" name="TempatLahir" size="30"></td>
+    </tr></center>
+
+    <center><tr>
+        <td>Tanngal Lahir</td>
+        <td>:</td>
+        <td id="TanggalLahir"><input type="date" name="TanggalLahir" size="30"></td>
+    </tr></center>
+
+    <center><tr>
+        <td>No Akte</td>
+        <td>:</td>
+        <td id="NomerAkte"><input type="text" name="NomerAkte" size="30"></td>
+    </tr></center>
+
+    <center><tr>
+        <td>Jenis Kelamin</td>
+        <td>:</td>
+        <td id="JenisKelamin"> 
+            <input type="radio" name="JenisKelamin" value="Laki-Laki">Laki-Laki</input>
+            <input type="radio" name="JenisKelamin" value="Perempuan">Perempuan</input>
+        </td>
+
+    </tr></center>
+
+    <center><tr>
+        <td>Agama</td>
+        <td>:</td>
+        <td id="Agama"> 
+            <input type="radio" name="Agama" value="Islam">Islam</input>
+            <input type="radio" name="Agama" value="Kristen">Kristen</input>
+            <input type="radio" name="Agama" value="Budha">Budha</input>
+            <input type="radio" name="Agama" value="Khonghucu">Khonghucu</input>
+            <input type="radio" name="Agama" value="Lainya">Lainya</input>
+        </td>
+    </tr></center>
+
+    <center><tr>
+        <td>Lulusan</td>
+        <td>:</td>
+        <td><select id="Lulusan" name="Lulusan"> 
+                <option>••••••••LULUSAN SEKOLAH••••••••</option>
+                <option>SD</option>
+                <option>SMP</option>
+                <option>SMA/SMK</option>
+                <option>S1</option>
+                <option>S2</option>
+                <option>LAINYA</option>
+
+        </select></td>
+
+        <center><tr>
+            <td>Alamat</td>
+            <td>:</td>
+            <td id="Alamat"><textarea name="Alamat" cols="31" rows="8"></textarea></td>
+        </tr></center>
+        </tr></center>
+
+        <center><tr>
+            <td>Foto KK</td>
+            <td>:</td>
+            <td id="FotoKK"><input type="file" name="FotoKK" size="15" id="foto"></td>
+        </tr></center>
+        </tr></center>
+
+        <center><tr>
+            <td>Foto KTP</td>
+            <td>:</td>
+            <td id="FotoKTP"><input type="file" name="FotoKTP" size="15" id="foto"></td>
+        </tr></center>
+        </tr></center>
+
+        <center><tr>
+            <td>Foto IJAZAH</td>
+            <td>:</td>
+            <td id="FotoIjazah"><input type="file" name="FotoIjazah" size="15" id="foto"></td>
+        </tr></center>
+        </tr></center>
+
+        <center><tr>
+            <td>Alasan Masuk Perusahaan</td>
+            <td>:</td>
+            <td id="AlasanMasuk"><textarea name="AlasanMasuk" cols="50" rows="8"></textarea></td>
+        </tr></center>
+        </tr></center>
+</table></center></font>
+</form>
+
+<center>
+<button type="submit" onclick="SubmitForm()">Selesai</button>
+<button type="submit" onclick="resetB()">ResetTabel</button>
+</center>
+</body>
+
+<style> 
+    h1{
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    }
+    .body1{
+        background-image: url(kantor.JPG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        
+    }
+#foto{
+    color: transparent;
+}
+
+@media (max-width: 600px) {
+            body {
+                padding: 10px;
+                
+            }
+
+            h2 {
+                font-size: 1.5em;
+
+            }
+
+            
+            }
+
+#Tentang{
+    position: absolute;
+    top: 10px;
+    text-align: right;
+    font-size: 13px;
+    background-color: transparent;
+    border: none;
+    color: blue;
+}            
+
+</style>
+
+<script>
+    function resetB(){
+document.getElementById('Forum').reset();
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function SubmitForm(){
+    const form = document.getElementById('Forum');
+    const formData = new FormData(form);
+
+fetch('submit.php',{
+method: 'POST',
+body: formData
+
+})
+.then(respone => respone.text())
+.then(data => {
+alert("Data sudah Disimpan")
+async function example() {
+    console.log('Start');
+    await sleep(3000);  // Pauses for 2 seconds
+    document.getElementById('Forum').reset();
+    window.open('newforum.html','_self');
+
+}
+example();
+})
+.catch(error => console.error("Error",Error))
+
+}
+
+
+document.getElementById('Tentang').addEventListener('click', function(){
+window.open('Tentang.html','_self')
+});
+
+</script>
+
+</html>
